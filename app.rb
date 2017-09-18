@@ -7,17 +7,26 @@ get '/' do
 	erb :phonebook 
 	
 end 
+db_params = {
+   	host: ENV['host'],
+   	port: ENV['port'],
+   	dbname: ENV['db_name'],
+   	user: ENV['user'],
+   	password: ENV['password'],
+   } 
  
 
-post '/phonebook' do 
-    session[:pdata] = params[:value]
-    
-  p "#{session[:pdata]}"
 
-     # erb :phonebook, :locals => { 
-     # first: session[:first],
-     #  last: session[:last],
-     #  zip: session[:zip],
-     #  street: session[:street]} 
-    end
+   db= PG::Connection.new(db_params)
+post '/phonebook' do 
+  pdata = params[:value]
+# "#{pdata[0]},#{pdata[1]}, #{pdata[2]},#{pdata[3]},#{pdata[4]}"
+ 
+
+
+   db.exec("insert into public.phonebook(first,last,num,zip,street)VALUES('#{pdata[0]}','#{pdata[1]}', '#{pdata[2]}','#{pdata[3]}','#{pdata[4]}')" )
+ end 
+
+
+
 
