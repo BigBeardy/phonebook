@@ -1,37 +1,45 @@
 <link href="css/styles.css" rel="stylesheet">
+
 <form method = "post" action = "/phonebook">
- <p>name <input type = "text" value = ""  name = "value[]"> </p>
- <p>lastname<input type = "text" value = "" name = "value[]"></p>
- <p>street<input type = "text" value = "" name = "value[]"></p>
- <p>num<input type = "text" value = "" name = "value[]"></p>
- <p>zip<input type = "text" value = "" name = "value[]"></p>
- <input type="submit">
+	<p>name <input type = "text" value = ""  name = "value[]"> </p>
+    <p>lastname<input type = "text" value = "" name = "value[]"></p>
+    <p>street<input type = "text" value = "" name = "value[]"></p>
+    <p>num<input type = "text" value = "" name = "value[]"></p>
+    <p>zip<input type = "text" value = "" name = "value[]"></p>
+    <input type="submit">
 </form>
 
 <table>
 	<tr>
+		<th>Select</th>
 		<th>FIRSTNAME</th>
 		<th>Last_name</th>
 		<th> Num </th>
 		<th> Street address </th>
 		<th> zip  </th>
 	</tr>
- <form method = "post" action = "/update">
+<form method = "post" action = "/update">
 	<%retrievedbook.each do |retrieving|%>
-	<tbody>
+	<%arr = retrieving.values%>
+	
+	
 		<tr>
-
-				<td> <input type = "radio" value ="<%=retrieving['id']%>"  name = "id"></td>
+			<td> <input type = "radio" value ="<%=arr[-1]%>"  name = "id"></td>
 			<td><%=retrieving['first']%></td>
 			<td><%=retrieving['last']%></td>
-			<td><%=retrieving['zip']%></td>
-			<td><%=retrieving['street']%></td>
 			<td><%=retrieving['num']%></td>
-			
-
+			<td><%=retrieving['street']%></td>
+			<td><%=retrieving['zip']%></td>
+	    </tr>
 	<%end%>
-		</tr>
-	</tbody>
 </table>
 	
-<input type="submit" value = "update">
+	<p>name <input type = "text" value = ""  name = "first"> </p>
+    <p>lastname<input type = "text" value = "" name = "last"></p>
+    <p>street<input type = "text" value = "" name = "street"></p>
+    <p>num<input type = "text" value = "" name = "num"></p>
+    <p>zip<input type = "text" value = "" name = "zip"></p>
+	<input type="submit" name = "choice" value = "delete"> 
+	<input type="submit" name= "choice" value = "update">
+</form>
+
